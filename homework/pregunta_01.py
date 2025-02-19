@@ -18,6 +18,7 @@ def pregunta_01():
 print(pregunta_01())
 
 
+
 """
     Retorne la suma de la segunda columna.
 

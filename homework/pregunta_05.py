@@ -34,3 +34,4 @@ def pregunta_05():
 
 # Prueba la función
 print(pregunta_05())
+

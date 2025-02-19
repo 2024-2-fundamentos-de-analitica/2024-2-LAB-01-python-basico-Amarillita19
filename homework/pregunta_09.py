@@ -42,3 +42,4 @@ def pregunta_09():
 
 # Prueba la función
 print(pregunta_09())
+

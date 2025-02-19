@@ -37,3 +37,4 @@ def pregunta_12():
 # Prueba la función
 print(pregunta_12())
 
+
