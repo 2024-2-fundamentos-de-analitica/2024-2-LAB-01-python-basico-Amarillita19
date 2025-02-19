@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_07():
     """
     Retorne una lista de tuplas que asocien las columnas 2 y 1. Cada tupla

@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_08():
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla

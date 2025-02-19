@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_04():
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la

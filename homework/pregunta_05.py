@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_05():
     """
     Retorne una lista de tuplas con el valor máximo y mínimo de la columna 2

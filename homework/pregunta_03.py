@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_03():
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como

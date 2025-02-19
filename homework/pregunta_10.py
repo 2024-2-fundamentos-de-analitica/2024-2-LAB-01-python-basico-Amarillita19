@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_10():
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la

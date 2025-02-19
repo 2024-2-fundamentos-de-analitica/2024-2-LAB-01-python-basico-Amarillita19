@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_12():
     """
     Genere un diccionario que contenga como clave la columna 1 y como valor

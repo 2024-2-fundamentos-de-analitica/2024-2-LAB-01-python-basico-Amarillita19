@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_11():
     """
     Retorne un diccionario que contenga la suma de la columna 2 para cada

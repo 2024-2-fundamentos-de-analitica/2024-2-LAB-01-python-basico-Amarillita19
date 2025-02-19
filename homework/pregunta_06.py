@@ -6,6 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_06():
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras

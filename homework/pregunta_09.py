@@ -5,6 +5,7 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
+
 def pregunta_09():
     """
     Retorne un diccionario que contenga la cantidad de registros en que
