@@ -17,6 +17,22 @@ def pregunta_10():
      ...
      ('E', 2, 3),
      ('E', 3, 3)]
-
-
     """
+
+    resultado = []
+
+    with open(r"C:\Users\Sara Castaño\Downloads\2024-2-LAB-01-python-basico-Amarillita19\files\input\data.csv", "r") as file:
+        for linea in file:
+            partes = linea.strip().split("\t")  # Separar por tabulación
+            
+            letra = partes[0]  # Columna 1 (letra)
+            col4_count = len(partes[3].split(","))  # Cantidad de elementos en la columna 4
+            col5_count = len(partes[4].split(","))  # Cantidad de elementos en la columna 5
+            
+            resultado.append((letra, col4_count, col5_count))
+
+    return resultado
+
+# Prueba la función
+print(pregunta_10())
+
