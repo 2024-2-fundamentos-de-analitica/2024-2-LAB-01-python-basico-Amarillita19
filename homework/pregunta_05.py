@@ -5,34 +5,38 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from function.functions import (
+    load_data,
+    extract_column,
+    column_mapper_2,
+    shuffle_and_sort,
+    max_min_reducer
+)
 
 
 def pregunta_05():
     """
-    Retorne una lista de tuplas con el valor máximo y mínimo de la columna 2
-    por cada letra de la columna 1.
+    Retorne una lista de tuplas con el valor maximo y minimo de la columna 2
+    por cada letra de la columa 1.
 
     Rta/
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
+
     """
+    data = load_data()
+    column_1 = extract_column(0, data)
+    column_2 = extract_column(1, data)
 
-    from collections import defaultdict
+    content = column_mapper_2(column_1, column_2)
+    content = shuffle_and_sort(content)
+    return max_min_reducer(content)
 
-    valores = defaultdict(list)  # Diccionario para almacenar valores de cada letra
 
-    with open(r"C:\Users\Sara Castaño\Downloads\2024-2-LAB-01-python-basico-Amarillita19\files\input\data.csv", "r") as file:
-        for linea in file:
-            partes = linea.strip().split("\t")  # Separar por tabulación
-            letra = partes[0]  # Primera columna
-            valor = int(partes[1])  # Segunda columna (convertida a entero)
 
-            valores[letra].append(valor)  # Agregar el valor al diccionario
-
-    # Crear lista de tuplas con (letra, valor máximo, valor mínimo) ordenada alfabéticamente
-    resultado = sorted((letra, max(nums), min(nums)) for letra, nums in valores.items())
-
-    return resultado
-
-# Prueba la función
 print(pregunta_05())
 

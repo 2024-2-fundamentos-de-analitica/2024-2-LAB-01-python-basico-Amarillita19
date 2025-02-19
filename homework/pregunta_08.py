@@ -4,15 +4,25 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from function.functions import (
+    load_data,
+    column_mapper_3,
+    shuffle_and_sort,
+    reducer_3,
+    extract_multiple_columns
+)
 
 def pregunta_08():
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla
-    contiene el valor de la segunda columna; la segunda parte de la tupla
+    contiene  el valor de la segunda columna; la segunda parte de la tupla
     es una lista con las letras (ordenadas y sin repetir letra) de la
-    primera columna que aparecen asociadas a dicho valor de la segunda
+    primera  columna que aparecen asociadas a dicho valor de la segunda
     columna.
 
     Rta/
@@ -26,25 +36,13 @@ def pregunta_08():
      (7, ['A', 'C', 'D', 'E']),
      (8, ['A', 'B', 'D', 'E']),
      (9, ['A', 'B', 'C', 'E'])]
+
     """
+    data = load_data()
+    column_2, column_1 = extract_multiple_columns(range(2), data)
+    content = column_mapper_3(column_1, column_2)
+    content = shuffle_and_sort(content)
+    content = reducer_3(content)
+    return content
 
-    from collections import defaultdict
-
-    asociaciones = defaultdict(set)  # Usamos un conjunto para evitar duplicados
-
-    with open(r"C:\Users\Sara Castaño\Downloads\2024-2-LAB-01-python-basico-Amarillita19\files\input\data.csv", "r") as file:
-        for linea in file:
-            partes = linea.strip().split("\t")  # Separar por tabulación
-            letra = partes[0]  # Columna 1 (letra)
-            valor = int(partes[1])  # Columna 2 (valor numérico)
-
-            asociaciones[valor].add(letra)  # Agregamos la letra al conjunto
-
-    # Convertimos a lista de tuplas y ordenamos
-    resultado = sorted((clave, sorted(lista)) for clave, lista in asociaciones.items())
-
-    return resultado
-
-# Prueba la función
 print(pregunta_08())
-

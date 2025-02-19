@@ -5,8 +5,16 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from function.functions import (
+        load_data,
+        extract_multiple_columns,
+        parse_column
+)
 def pregunta_10():
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la
@@ -18,23 +26,13 @@ def pregunta_10():
      ...
      ('E', 2, 3),
      ('E', 3, 3)]
+
+
     """
+    data = load_data()
+    column_1, column_4, column_5 = extract_multiple_columns([0, 3, 4], data)
+    parsed_column_4 = parse_column(column_4, ",")
+    parsed_column_5 = parse_column(column_5, ",")
 
-    resultado = []
-
-    with open(r"C:\Users\Sara Castaño\Downloads\2024-2-LAB-01-python-basico-Amarillita19\files\input\data.csv", "r") as file:
-        for linea in file:
-            partes = linea.strip().split("\t")  # Separar por tabulación
-            
-            letra = partes[0]  # Columna 1 (letra)
-            col4_count = len(partes[3].split(","))  # Cantidad de elementos en la columna 4
-            col5_count = len(partes[4].split(","))  # Cantidad de elementos en la columna 5
-            
-            resultado.append((letra, col4_count, col5_count))
-
-    return resultado
-
-# Prueba la función
-print(pregunta_10())
-
+    return [(column_1[indx], len(parsed_column_4[indx]), len(parsed_column_5[indx])) for indx in range(len(column_1))]
 

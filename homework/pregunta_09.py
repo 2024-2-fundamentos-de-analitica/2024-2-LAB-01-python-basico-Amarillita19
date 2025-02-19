@@ -5,42 +5,40 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from function.functions import (
+    load_data,
+    extract_column,
+    column_mapper_1,
+    shuffle_and_sort,
+    parse_column,
+    parse_to_one_column,
+    reducer
+)
 def pregunta_09():
     """
     Retorne un diccionario que contenga la cantidad de registros en que
     aparece cada clave de la columna 5.
 
     Rta/
-    {'aaa': 13,
-     'bbb': 16,
-     'ccc': 23,
-     'ddd': 23,
-     'eee': 15,
-     'fff': 20,
-     'ggg': 13,
-     'hhh': 16,
-     'iii': 18,
-     'jjj': 18}
+    {'aaa': 13,'bbb': 16,'ccc': 23,'ddd': 23,'eee': 15,'fff': 20,'ggg': 13,'hhh': 16,'iii': 18,
+    'jjj': 18}}
+
     """
+    data = load_data()
+    column = extract_column(4, data)
+    parsed_column = parse_column(column, ",")
+    stuck_column = parse_to_one_column(parsed_column)
+    content = parse_column(stuck_column, ":")
+    registers = extract_column(0, content)
+    content = column_mapper_1(registers)
+    content = shuffle_and_sort(content)
+    content = reducer(content, return_dict= True)
+    return content
 
-    from collections import defaultdict
-
-    conteo_claves = defaultdict(int)
-
-    with open(r"C:\Users\Sara Castaño\Downloads\2024-2-LAB-01-python-basico-Amarillita19\files\input\data.csv", "r") as file:
-        for linea in file:
-            partes = linea.strip().split("\t")  # Separar por tabulación
-            col5 = partes[4]  # Columna 5 (diccionario codificado)
-            
-            pares = col5.split(",")  # Separar los pares clave:valor
-            
-            for par in pares:
-                clave, _ = par.split(":")  # Extraer la clave
-                conteo_claves[clave] += 1  # Incrementar la cuenta de la clave
-
-    return dict(sorted(conteo_claves.items()))  # Devolver diccionario ordenado por clave
-
-# Prueba la función
 print(pregunta_09())
 

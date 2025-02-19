@@ -4,36 +4,35 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from function.functions import (
+    load_data,
+    extract_multiple_columns,
+    parse_column,
+    parse_to_one_column_with_value,
+    shuffle_and_sort,
+    reducer
+)
 
 def pregunta_11():
     """
-    Retorne un diccionario que contenga la suma de la columna 2 para cada
-    letra de la columna 4, ordenadas alfabéticamente.
+    Retorne un diccionario que contengan la suma de la columna 2 para cada
+    letra de la columna 4, ordenadas alfabeticamente.
 
     Rta/
     {'a': 122, 'b': 49, 'c': 91, 'd': 73, 'e': 86, 'f': 134, 'g': 35}
     """
+    data = load_data()
+    column_1, column_4 = extract_multiple_columns([1, 3], data)
+    parsed_column_4 = parse_column(column_4, ",")
 
-    resultado = {}
-
-    with open(r"C:\Users\Sara Castaño\Downloads\2024-2-LAB-01-python-basico-Amarillita19\files\input\data.csv", "r") as file:
-        for linea in file:
-            partes = linea.strip().split("\t")  # Separar por tabulación
-            
-            valor_col2 = int(partes[1])  # Convertir la columna 2 a entero
-            letras_col4 = partes[3].split(",")  # Lista de letras en columna 4
-
-            for letra in letras_col4:
-                if letra in resultado:
-                    resultado[letra] += valor_col2
-                else:
-                    resultado[letra] = valor_col2
-
-    return dict(sorted(resultado.items()))  # Ordenar alfabéticamente por clave
-
-# Prueba la función
+    content = parse_to_one_column_with_value(parsed_column_4, column_1)
+    content = shuffle_and_sort(content)
+    content = reducer(content, return_dict= True)
+    return content
+    
 print(pregunta_11())
-
-

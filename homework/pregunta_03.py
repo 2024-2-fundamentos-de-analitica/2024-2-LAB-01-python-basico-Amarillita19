@@ -4,34 +4,39 @@ datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from function.functions import (
+    load_data,
+    extract_column,
+    column_mapper_2,
+    shuffle_and_sort,
+    reducer
+)
 
 
 def pregunta_03():
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como
-    una lista de tuplas (letra, suma) ordenadas alfabéticamente.
+    una lista de tuplas (letra, suma) ordendas alfabeticamente.
 
     Rta/
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
+
     """
+    data = load_data()
+    column_1 = extract_column(0, data)
+    column_2 = extract_column(1, data)
 
-    suma_letras = {}  # Diccionario para almacenar la suma de la columna 2 por cada letra
+    content = column_mapper_2(column_1, column_2)
+    content = shuffle_and_sort(content)
+    content = reducer(content)
 
-    with open(r"C:\Users\Sara Castaño\Downloads\2024-2-LAB-01-python-basico-Amarillita19\files\input\data.csv", "r") as file:
-        for linea in file:
-            partes = linea.strip().split("\t")  # Separa la línea en columnas
-            letra = partes[0]  # Primera columna (letra)
-            valor = int(partes[1])  # Segunda columna (número convertido a entero)
+    return content
 
-            # Sumar valores por cada letra
-            suma_letras[letra] = suma_letras.get(letra, 0) + valor
-
-    # Convertir el diccionario en una lista de tuplas y ordenarla alfabéticamente
-    resultado = sorted(suma_letras.items())
-
-    return resultado
-
-# Prueba la función
 print(pregunta_03())
+
 
